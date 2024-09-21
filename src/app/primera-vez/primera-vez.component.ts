@@ -2,6 +2,7 @@ import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import fs from 'fs';
 import ReservaPrimeraVez from './todos.json';
+import { validateRut } from '@fdograph/rut-utilities';
 
 interface PrimeraReserva {  
   Rut: String;
@@ -21,10 +22,21 @@ interface PrimeraReserva {
 export class PrimeraVezComponent {
   ReservaItems:PrimeraReserva[]=ReservaPrimeraVez;
         
-        constructor() { }
-        ngOnInit() {
-        }
+  constructor() { }
+  ngOnInit() {
+  }
 
+  calculateAge(birthday: string): number {
+    const [year, month, day] = birthday.split('-').map(Number);
+    const birthDate = new Date(year, month - 1, day);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  } 
 
   myFunc() {
 
@@ -33,6 +45,18 @@ export class PrimeraVezComponent {
     var apellidos = ((document.getElementById("apellidos") as HTMLInputElement).value);
     var fechaNacimiento = ((document.getElementById("fechaDeNacimiento") as HTMLInputElement).value);
     
+
+
+    if (!validateRut(rut)) {
+      alert("Rut no válido");
+      return;
+    }
+    
+    if (this.calculateAge(fechaNacimiento) < 18) {
+      alert("Debes ser mayor de edad para reservar");
+      return;
+    }
+
     const newItem: PrimeraReserva = { Rut:rut, Nombres:nombres, Apellidos:apellidos, FechaNacimiento:fechaNacimiento, Status:"In Progress"  };
     this.ReservaItems.push(newItem);
     var jsonTodoItems=JSON.stringify(this.ReservaItems);
