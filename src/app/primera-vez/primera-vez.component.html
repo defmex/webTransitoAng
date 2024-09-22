@@ -50,7 +50,8 @@
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">                
                   <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Retroceder</button>
                   <button type="submit" (click)="myFunc()" data-mdb-button-init data-mdb-ripple-init class="btn btn-success">Reservar</button>
-              </div>
+              </div> 
+            <!-- Eliminar esta parte más adelante -->
               <h4>Este es una parte del testeo para ver que se esta guardando</h4>
               <table class="table mb-4">
                 <thead>
@@ -65,7 +66,6 @@
                   <tr *ngFor="let item of ReservaItems">
                     <th scope="row">{{item.Rut}}</th>
                     <td>{{item.Nombres}}</td>
-                    <td>{{item.Status}}</td>
                     <td>
                       <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger">Delete</button>
                       <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success ms-1">Finished</button>

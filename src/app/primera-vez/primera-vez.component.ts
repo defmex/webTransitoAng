@@ -6,8 +6,7 @@ interface PrimeraReserva {
   Rut: string;
   Nombres: string;  
   Apellidos: string; 
-  FechaNacimiento: string; 
-  Status: string;  
+  FechaNacimiento: string;   
 }  
 
 @Component({
@@ -27,7 +26,7 @@ export class PrimeraVezComponent {
   }
 
   calculateAge(dateOfBirth: string): number {
-    const [day, month, year] = dateOfBirth.split('-').map(Number);
+    const [year, month, day] = dateOfBirth.split('-').map(Number);
     const birthDate = new Date(year, month - 1, day); // Months are zero-based in JavaScript
     const today = new Date();
     let age = today.getFullYear() - birthDate.getFullYear();
@@ -60,7 +59,6 @@ export class PrimeraVezComponent {
       Nombres: nombres,
       Apellidos: apellidos,
       FechaNacimiento: fechaNacimiento,
-      Status: "In Progress"
     };
 
     this.ReservaItems.push(newItem);
