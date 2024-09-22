@@ -51,28 +51,7 @@
                   <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Retroceder</button>
                   <button type="submit" (click)="myFunc()" data-mdb-button-init data-mdb-ripple-init class="btn btn-success">Reservar</button>
               </div> 
-            <!-- Eliminar esta parte más adelante -->
-              <h4>Este es una parte del testeo para ver que se esta guardando</h4>
-              <table class="table mb-4">
-                <thead>
-                  <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Todo item</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of ReservaItems">
-                    <th scope="row">{{item.Rut}}</th>
-                    <td>{{item.Nombres}}</td>
-                    <td>
-                      <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger">Delete</button>
-                      <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success ms-1">Finished</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            
           </div>
         </div>
       </div>
