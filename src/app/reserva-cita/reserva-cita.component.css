@@ -1,0 +1,11 @@
+.badge-success {
+    cursor: pointer;
+    color: green;
+}
+  
+.badge-danger {
+    cursor: not-allowed;
+    color: red;
+}
+
+  

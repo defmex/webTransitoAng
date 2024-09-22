@@ -1,0 +1,28 @@
+<section class="vh-100" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="table-container">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Bloque</th>
+                        <th *ngFor="let dia of dias">{{ dia }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bloque of bloques; let i = index">
+                        <td>Bloque {{ i + 1 }}</td>
+                        <td *ngFor="let horario of bloque" (click)="seleccionarHora(horario)" id="hora">
+                            <span [ngClass]="{'badge badge-success': horario.disponible, 'badge badge-danger': !horario.disponible}">
+                                {{ horario.hora }}
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary" (click)="confirmarReserva()">Confirmar Reserva</button>
+            </div>
+        </div>
+    </div>
+</section>
+    
