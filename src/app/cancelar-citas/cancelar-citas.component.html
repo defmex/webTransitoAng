@@ -1,19 +1,29 @@
-<div>
-  <h2>Cancelar Reservas</h2>
-  
-  <label for="rut">Ingrese su RUT:</label>
-  <input [(ngModel)]="rut" id="rut" type="text" placeholder="Ingrese su RUT">
-  <button (click)="buscarReservasPorRut()">Buscar Reservas</button>
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="text-center">Cancelar Reservas</h2>
 
-  <p *ngIf="mensaje">{{ mensaje }}</p>
+      <div class="form-group mt-4">
+        <label for="rut" class="form-label">Ingrese su RUT:</label>
+        <input [(ngModel)]="rut" id="rut" type="text" class="form-control" placeholder="Ingrese su RUT">
+      </div>
 
-  <div *ngIf="reservasDelUsuario.length > 0">
-    <h3>Reservas Agendadas</h3>
-    <ul>
-      <li *ngFor="let reserva of reservasDelUsuario">
-        {{ reserva.fecha }} a las {{ reserva.hora }}
-        <button (click)="cancelarReserva(reserva.fecha, reserva.hora)">Cancelar</button>
-      </li>
-    </ul>
+      <div class="text-center mt-3">
+        <button (click)="buscarReservasPorRut()" class="btn btn-primary">Buscar Reservas</button>
+      </div>
+
+      <p *ngIf="mensaje" class="text-danger text-center mt-2">{{ mensaje }}</p>
+
+      <div *ngIf="reservasDelUsuario.length > 0" class="mt-4">
+        <h3 class="text-center">Reservas Agendadas</h3>
+        <ul class="list-group">
+          <li *ngFor="let reserva of reservasDelUsuario" class="list-group-item d-flex justify-content-between align-items-center">
+            {{ reserva.fecha }} a las {{ reserva.hora }}
+            <button (click)="cancelarReserva(reserva.fecha, reserva.hora)" class="btn btn-danger btn-sm">Cancelar</button>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
+
