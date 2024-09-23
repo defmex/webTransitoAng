@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditarReservaComponent } from './editar-reserva.component';
+import { CancelarCitasComponent } from './cancelar-citas.component';
 
-describe('EditarReservaComponent', () => {
-  let component: EditarReservaComponent;
-  let fixture: ComponentFixture<EditarReservaComponent>;
+describe('CancelarCitasComponent', () => {
+  let component: CancelarCitasComponent;
+  let fixture: ComponentFixture<CancelarCitasComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditarReservaComponent]
+      imports: [CancelarCitasComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditarReservaComponent);
+    fixture = TestBed.createComponent(CancelarCitasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

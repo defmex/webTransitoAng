@@ -1,0 +1,19 @@
+<div>
+  <h2>Cancelar Reservas</h2>
+  
+  <label for="rut">Ingrese su RUT:</label>
+  <input [(ngModel)]="rut" id="rut" type="text" placeholder="Ingrese su RUT">
+  <button (click)="buscarReservasPorRut()">Buscar Reservas</button>
+
+  <p *ngIf="mensaje">{{ mensaje }}</p>
+
+  <div *ngIf="reservasDelUsuario.length > 0">
+    <h3>Reservas Agendadas</h3>
+    <ul>
+      <li *ngFor="let reserva of reservasDelUsuario">
+        {{ reserva.fecha }} a las {{ reserva.hora }}
+        <button (click)="cancelarReserva(reserva.fecha, reserva.hora)">Cancelar</button>
+      </li>
+    </ul>
+  </div>
+</div>
