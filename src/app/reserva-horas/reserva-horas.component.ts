@@ -21,6 +21,9 @@ export class ReservaHorasComponent {
   horaSeleccionada: string | null = null;
   jsonReserva: string | null = null;
 
+  // Variable que contiene la fecha actual en formato YYYY-MM-DD
+  fechaActual: string = new Date().toISOString().split('T')[0];  
+
   ngOnInit(): void {
     this.cargarDatos();
     this.cargarReservas();
@@ -78,11 +81,11 @@ export class ReservaHorasComponent {
         nombres: this.nombres,
         apellidos: this.apellidos
       };
-  
+
       // Agregar la nueva reserva al array de reservas
       this.reservas.push(nuevaReserva);
       this.guardarReservas();
-  
+
       // Actualizar los bloques disponibles para que la hora confirmada ya no aparezca
       this.bloquesDisponibles = this.bloquesDisponibles.map(bloque => {
         if (bloque.hora === this.horaSeleccionada) {
@@ -90,7 +93,7 @@ export class ReservaHorasComponent {
         }
         return bloque;
       });
-  
+
       // Mostrar JSON de la reserva confirmada
       this.jsonReserva = JSON.stringify(nuevaReserva, null, 2);
       alert('Reserva confirmada');

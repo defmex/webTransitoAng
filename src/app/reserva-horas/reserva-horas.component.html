@@ -18,9 +18,9 @@
     <!-- Selector de Fecha -->
     <div class="form-group">
       <label for="fecha">Seleccione una fecha: </label>
-      <input type="date" id="fecha" class="form-control" (change)="onFechaSeleccionada($event)">
+      <input type="date" id="fecha" class="form-control" [min]="fechaActual" (change)="onFechaSeleccionada($event)">
     </div>
-  
+    
     <!-- Bloques de Horas Disponibles -->
     <div *ngIf="bloquesDisponibles.length > 0">
       <h4>Horas disponibles:</h4>
