@@ -64,7 +64,7 @@ export class RenovarComponent {
       localStorage.setItem('RenovarItems', json);
     }
 
-    goToReserva(this.router);
+    goToReserva(this.router, newItem);
   }
 
   loadRenovarItems(): User[] {

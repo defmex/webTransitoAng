@@ -1,4 +1,5 @@
-import { Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './inicio/inicio.component';
 import { PrimeraVezComponent } from './primera-vez/primera-vez.component';
 import { RenovarComponent } from './renovar/renovar.component';
@@ -12,3 +13,9 @@ export const routes: Routes = [
     { path: 'editarReserva-component', component: EditarReservaComponent },
     { path: 'reservaCita-component', component: ReservaCitaComponent }
 ];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+export class AppRoutingModule { }

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { NgFor, CommonModule } from '@angular/common';
 import { User } from '../utils/utils';
+import { Router, ActivatedRoute } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 
 export interface BloqueHorario {
@@ -17,15 +19,33 @@ export interface BloqueHorario {
   styleUrl: './reserva-cita.component.css'
 })
 
-export class ReservaCitaComponent {
+export class ReservaCitaComponent implements OnInit {
   dias: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
   bloques: BloqueHorario[][] = [];
+  User: User | undefined;
 
 
   selectedHorario: BloqueHorario | null = null;
 
-  constructor() {
+  constructor(private router: Router, private route: ActivatedRoute, @Inject(PLATFORM_ID) private platformId: Object) {
     this.generarBloques();
+  }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(() => {
+      const navigation = this.router.getCurrentNavigation();
+      console.log('Navigation Object:', navigation); // Log the navigation object
+      if (navigation?.extras?.state?.['user']) {
+        this.User = navigation.extras.state['user'];
+      } else if (isPlatformBrowser(this.platformId)) {
+        const state = window.history.state;
+        if (state && state.user) {
+          this.User = state.user;
+        } else {
+          console.log('No se ha recibido información del usuario');
+        }
+      }
+    });
   }
 
   generarBloques() {
@@ -57,12 +77,15 @@ export class ReservaCitaComponent {
     
 
     //Hacer que la reserva contenga los datos del usuario (implementar interfaz para guardar los datos del usuario actual)
-    const reserva: User = {
-      Rut: '12345678-9',
-      Nombres: 'Juan',
-      Apellidos: 'Pérez',
-      FechaNacimiento: '01/01/1990',
-      BloqueHorario: this.selectedHorario
+    if (!this.User) {
+      alert('No se ha recibido información del usuario');
+      return;
+    }
+
+    this.User.BloqueHorario = this.selectedHorario;
+
+    const reserva = {
+      ...this.User,
     };
 
     let reservas = JSON.parse(localStorage.getItem('reservas') || '[]');

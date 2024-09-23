@@ -61,12 +61,11 @@ export class PrimeraVezComponent {
     const jsonTodoItems = JSON.stringify(this.ReservaItems);
     alert(jsonTodoItems);
 
-    // Save to local storage
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('reservaItems', jsonTodoItems);
     }
 
-    goToReserva(this.router);
+    goToReserva(this.router, newItem);
   }
 
   loadReservaItems(): User[] {
