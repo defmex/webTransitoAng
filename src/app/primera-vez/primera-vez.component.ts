@@ -1,49 +1,85 @@
-import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
-import fs from 'fs';
-import ReservaPrimeraVez from './todos.json';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { NgFor, isPlatformBrowser } from '@angular/common';
+import { validateRut } from '@fdograph/rut-utilities';
+import { Router } from '@angular/router';
+import { goToReserva } from '../utils/utils';
 
-interface PrimeraReserva {  
-  Rut: String;
-  Nombres: String;  
-  Apellidos: String; 
-  FechaNacimiento: String; 
-  Status: String;  
-
+export interface PrimeraReserva {  
+  Rut: string;
+  Nombres: string;  
+  Apellidos: string; 
+  FechaNacimiento: string;   
 }  
+
 @Component({
   selector: 'app-primera-vez',
   standalone: true,
   imports: [NgFor],
   templateUrl: './primera-vez.component.html',
-  styleUrl: './primera-vez.component.css'
+  styleUrls: ['./primera-vez.component.css']
 })
 export class PrimeraVezComponent {
-  ReservaItems:PrimeraReserva[]=ReservaPrimeraVez;
-        
-        constructor() { }
-        ngOnInit() {
-        }
+  ReservaItems: PrimeraReserva[] = [];
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.ReservaItems = this.loadReservaItems();
+    }
+  }
+
+  calculateAge(dateOfBirth: string): number {
+    const [year, month, day] = dateOfBirth.split('-').map(Number);
+    const birthDate = new Date(year, month - 1, day); // Months are zero-based in JavaScript
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
 
   myFunc() {
+    const rut = ((document.getElementById("rut") as HTMLInputElement).value);
+    const nombres = ((document.getElementById("nombres") as HTMLInputElement).value);
+    const apellidos = ((document.getElementById("apellidos") as HTMLInputElement).value);
+    const fechaNacimiento = ((document.getElementById("fechaDeNacimiento") as HTMLInputElement).value);
 
-    var rut = ((document.getElementById("rut") as HTMLInputElement).value);
-    var nombres = ((document.getElementById("nombres") as HTMLInputElement).value);
-    var apellidos = ((document.getElementById("apellidos") as HTMLInputElement).value);
-    var fechaNacimiento = ((document.getElementById("fechaDeNacimiento") as HTMLInputElement).value);
-    
-    const newItem: PrimeraReserva = { Rut:rut, Nombres:nombres, Apellidos:apellidos, FechaNacimiento:fechaNacimiento, Status:"In Progress"  };
+    if (!validateRut(rut)) {
+      alert("Rut no válido");
+      return;
+    }
+
+    // Check age using calculateAge
+    if (this.calculateAge(fechaNacimiento) < 18) {
+      alert("Debes ser mayor de edad para reservar una hora");
+      return;
+    }
+
+    const newItem: PrimeraReserva = {
+      Rut: rut,
+      Nombres: nombres,
+      Apellidos: apellidos,
+      FechaNacimiento: fechaNacimiento,
+    };
+
     this.ReservaItems.push(newItem);
-    var jsonTodoItems=JSON.stringify(this.ReservaItems);
+    const jsonTodoItems = JSON.stringify(this.ReservaItems);
     alert(jsonTodoItems);
 
-    fs.writeFile('src/app/primera-vez/todos.json', jsonTodoItems, (err) => {
-      if (err) {
-          console.log('Error writing file:', err);
-      } else {
-          console.log('Successfully wrote file');
-      }
-      });
-  } 
+    // Save to local storage
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('reservaItems', jsonTodoItems);
+    }
+
+    goToReserva(this.router);
+  }
+
+  loadReservaItems(): PrimeraReserva[] {
+    if (isPlatformBrowser(this.platformId)) {
+      const jsonTodoItems = localStorage.getItem('reservaItems');
+      return jsonTodoItems ? JSON.parse(jsonTodoItems) : [];
+    }
+    return [];
+  }
 }
