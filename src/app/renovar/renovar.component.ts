@@ -2,14 +2,9 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { NgFor, isPlatformBrowser } from '@angular/common';
 import { validateRut } from '@fdograph/rut-utilities';
 import { goToReserva } from '../utils/utils';
+import { User } from '../utils/utils';
 import { Router } from '@angular/router';
 
-export interface RenovarLicencia {
-  Rut: string;
-  Nombres: string;
-  Apellidos: string;
-  FechaCaducidad: string;
-}
 
 @Component({
   selector: 'app-renovar',
@@ -19,7 +14,7 @@ export interface RenovarLicencia {
   styleUrl: './renovar.component.css'
 })
 export class RenovarComponent {
-  RenovarItems: RenovarLicencia[] = [];
+  RenovarItems: User[] = [];
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) {
     if (isPlatformBrowser(this.platformId)) {
@@ -54,7 +49,7 @@ export class RenovarComponent {
       return;
     }
 
-    const newItem: RenovarLicencia = {
+    const newItem: User = {
       Rut: rut,
       Nombres: nombres,
       Apellidos: apellidos,
@@ -72,7 +67,7 @@ export class RenovarComponent {
     goToReserva(this.router);
   }
 
-  loadRenovarItems(): RenovarLicencia[] {
+  loadRenovarItems(): User[] {
     if (isPlatformBrowser(this.platformId)) {
       const json = localStorage.getItem('RenovarItems');
       return json ? JSON.parse(json) : [];

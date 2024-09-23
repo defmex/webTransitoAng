@@ -1,21 +1,12 @@
 import { Component } from '@angular/core';
 import { NgFor, CommonModule } from '@angular/common';
-import { PrimeraReserva } from '../primera-vez/primera-vez.component';
-import { RenovarLicencia } from '../renovar/renovar.component';
+import { User } from '../utils/utils';
 
 
 export interface BloqueHorario {
   dia: string;
   hora: string;
   disponible: boolean;
-}
-
-export interface ReservaCita {
-  rut: string;
-  nombres: string;
-  apellidos: string;
-  fechaNacimiento: string;
-  bloqueHorario?: BloqueHorario;
 }
 
 @Component({
@@ -66,12 +57,12 @@ export class ReservaCitaComponent {
     
 
     //Hacer que la reserva contenga los datos del usuario (implementar interfaz para guardar los datos del usuario actual)
-    const reserva: ReservaCita = {
-      rut: '12345678-9',
-      nombres: 'Juan',
-      apellidos: 'Pérez',
-      fechaNacimiento: '01/01/1990',
-      bloqueHorario: this.selectedHorario
+    const reserva: User = {
+      Rut: '12345678-9',
+      Nombres: 'Juan',
+      Apellidos: 'Pérez',
+      FechaNacimiento: '01/01/1990',
+      BloqueHorario: this.selectedHorario
     };
 
     let reservas = JSON.parse(localStorage.getItem('reservas') || '[]');
