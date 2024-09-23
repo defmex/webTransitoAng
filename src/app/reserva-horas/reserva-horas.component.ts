@@ -24,6 +24,8 @@ export class ReservaHorasComponent {
   // Variable que contiene la fecha actual en formato YYYY-MM-DD
   fechaActual: string = new Date().toISOString().split('T')[0];  
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
     this.cargarDatos();
     this.cargarReservas();
@@ -97,6 +99,7 @@ export class ReservaHorasComponent {
       // Mostrar JSON de la reserva confirmada
       this.jsonReserva = JSON.stringify(nuevaReserva, null, 2);
       alert('Reserva confirmada');
+      this.router.navigate(['/']); 
     } else {
       alert('Seleccione una fecha y hora');
     }
