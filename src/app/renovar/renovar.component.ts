@@ -1,7 +1,7 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { NgFor, isPlatformBrowser } from '@angular/common';
 import { validateRut } from '@fdograph/rut-utilities';
-import { goToReserva } from '../utils/utils';
+import { goToInicio, goToReserva } from '../utils/utils';
 import { Router } from '@angular/router';
 import { User } from '../utils/utils';
 
@@ -65,6 +65,9 @@ export class RenovarComponent {
     }
 
     goToReserva(this.router);
+  }
+  toInicio(){
+    goToInicio(this.router);
   }
 
   loadRenovarItems(): User[] {

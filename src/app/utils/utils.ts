@@ -10,3 +10,7 @@ export interface User {
     FechaNacimiento?: string;
     FechaCaducidad?: string;
 }
+
+export function goToInicio(router: Router){
+    router.navigate(["/"]);
+}

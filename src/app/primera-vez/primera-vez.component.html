@@ -48,9 +48,12 @@
                   </div>  
               </div>
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">                
-                  <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Retroceder</button>
+                  <button type="submit" (click)="toInicio()" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Retroceder</button>
                   <button type="submit" (click)="myFunc()" data-mdb-button-init data-mdb-ripple-init class="btn btn-success">Reservar</button>
               </div> 
+              <div class="alert alert-primary" role="alert" id="alerta">
+
+              </div>
           </div>
         </div>
       </div>

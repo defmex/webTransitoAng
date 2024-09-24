@@ -2,7 +2,7 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { NgFor, isPlatformBrowser } from '@angular/common';
 import { validateRut } from '@fdograph/rut-utilities';
 import { Router } from '@angular/router';
-import { goToReserva } from '../utils/utils';
+import { goToInicio, goToReserva } from '../utils/utils';
 import { User } from '../utils/utils';
 
 
@@ -71,6 +71,9 @@ export class PrimeraVezComponent {
     goToReserva(this.router);
   }
 
+  toInicio(){
+    goToInicio(this.router);
+  }
   loadReservaItems(): User[] {
     if (isPlatformBrowser(this.platformId)) {
       const jsonTodoItems = localStorage.getItem('reservaItems');
