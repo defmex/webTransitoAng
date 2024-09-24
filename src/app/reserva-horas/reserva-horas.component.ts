@@ -17,7 +17,7 @@ export class ReservaHorasComponent {
   reservas: any[] = [];
   fechaSeleccionada: string | null = null;
   bloquesDisponibles: any[] = [];
-  bloquesHorarios = ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30'];
+  bloquesHorarios = ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30','14:00'];
   horaSeleccionada: string | null = null;
   jsonReserva: string | null = null;
 
