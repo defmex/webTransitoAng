@@ -1,24 +1,25 @@
 <section class="vh-30">
   <div>
     <div class="container text-center">
-      <img src="logo_reserva.png">
+      <img src="logo_reserva.png" class="d-block w-100" alt="">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid">
+        <div class="container-fluid">
+          <a class="nav-brand" aria-current="page" routerLink="" routerLinkActive="active">
+            <img src="home.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" routerLink="" routerLinkActive="active">
-                    <img src="home.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                  </a>
+                  <a class="nav-link"  routerLink="primeraVez-component" routerLinkActive="active">Primera vez</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" routerLink="primeraVez-component" routerLinkActive="active">Primera vez</a>
+                  <a class="nav-link"  routerLink="renovar-component" routerLinkActive="active">Renovar</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" routerLink="renovar-component" routerLinkActive="active">Renovar</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" aria-current="page" routerLink="cancelar-component" routerLinkActive="active">Ver y Cancelar reserva</a>
+                  <a class="nav-link"  routerLink="cancelar-component" routerLinkActive="active">Ver y Cancelar reserva</a>
                 </li>
               </ul>
             </div>
@@ -38,12 +39,11 @@
     <footer class="py-3 my-4">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+        <li class="nav-item"><a class="nav-link px-2 text-body-secondary" routerLink="primeraVez-component" >Primera vez</a></li>
+        <li class="nav-item"><a class="nav-link px-2 text-body-secondary" routerLink="renovar-component" routerLinkActive="active">Renovar</a></li>
+        <li class="nav-item"><a class="nav-link px-2 text-body-secondary" routerLink="cancelar-component" routerLinkActive="active">Ver y Cancelar reserva</a></li>
       </ul>
-      <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
+      <p class="text-center text-body-secondary">© 2024 Municipalidad de Viña del Mar</p>
     </footer>
   </div>
 </div>
