@@ -3,13 +3,9 @@ import { NgFor, isPlatformBrowser } from '@angular/common';
 import { validateRut } from '@fdograph/rut-utilities';
 import { Router } from '@angular/router';
 import { goToReserva } from '../utils/utils';
+import { User } from '../utils/utils';
 
-export interface PrimeraReserva {  
-  Rut: string;
-  Nombres: string;  
-  Apellidos: string; 
-  FechaNacimiento: string;   
-}  
+
 
 @Component({
   selector: 'app-primera-vez',
@@ -19,7 +15,7 @@ export interface PrimeraReserva {
   styleUrls: ['./primera-vez.component.css']
 })
 export class PrimeraVezComponent {
-  ReservaItems: PrimeraReserva[] = [];
+  ReservaItems: User[] = [];
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) {
     if (isPlatformBrowser(this.platformId)) {
@@ -56,7 +52,7 @@ export class PrimeraVezComponent {
       return;
     }
 
-    const newItem: PrimeraReserva = {
+    const newItem: User = {
       Rut: rut,
       Nombres: nombres,
       Apellidos: apellidos,
@@ -75,7 +71,7 @@ export class PrimeraVezComponent {
     goToReserva(this.router);
   }
 
-  loadReservaItems(): PrimeraReserva[] {
+  loadReservaItems(): User[] {
     if (isPlatformBrowser(this.platformId)) {
       const jsonTodoItems = localStorage.getItem('reservaItems');
       return jsonTodoItems ? JSON.parse(jsonTodoItems) : [];
