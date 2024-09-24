@@ -61,7 +61,6 @@ export class PrimeraVezComponent {
 
     this.ReservaItems.push(newItem);
     const jsonTodoItems = JSON.stringify(this.ReservaItems);
-    alert(jsonTodoItems);
 
     // Save to local storage
     if (isPlatformBrowser(this.platformId)) {

@@ -58,7 +58,6 @@ export class RenovarComponent {
 
     this.RenovarItems.push(newItem);
     const json = JSON.stringify(this.RenovarItems);
-    alert(json);
 
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('RenovarItems', json);
